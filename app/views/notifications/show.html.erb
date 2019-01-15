@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @notification.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @notification.description %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @notification.date %>
+</p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @notification.time.strftime("%k:%M")  %>
+</p>
+
+<p>
+  <strong>Sended:</strong>
+  <%= @notification.sended %>
+</p>
+
+<%= link_to 'Edit', edit_user_notification_path(@notification) %> |
+<%= link_to 'Back', user_notifications_path %>
