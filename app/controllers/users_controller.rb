@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   private
 
   def initialize_user
-    @user = User.where(id: params[:id])
+    @user = User.find_by(id: params[:id])
   end
 
   def user_params
