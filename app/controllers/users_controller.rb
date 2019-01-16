@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :initialize_user, only: [:show, :edit, :update, :destroy]
 
   def index
     @users = User.all
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to users_path, notice: 'User was successfully created.'
+      redirect_to users_path
     else
       render :new 
     end
@@ -20,13 +20,13 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to users_path, notice: 'User was successfully destroyed.'
+    redirect_to users_path
   end
 
   private
 
-  def set_user
-    @user = User.find(params[:id])
+  def initialize_user
+    @user = User.where(id: params[:id])
   end
 
   def user_params

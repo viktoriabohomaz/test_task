@@ -3,7 +3,7 @@ class NotificationsController < ApplicationController
   before_action :initialize_user
 
   def index
-    @notifications =  @user.notifications
+    @notifications = @user.notifications
   end
 
   def show
@@ -19,7 +19,7 @@ class NotificationsController < ApplicationController
   def create
     @notification = @user.notifications.create(notification_params)
     if @notification.save
-      redirect_to user_notifications_url(@user), notice: 'Notification was successfully created.' 
+      redirect_to user_notifications_url(@user)
     else
       render :new 
     end
@@ -27,7 +27,7 @@ class NotificationsController < ApplicationController
 
   def update
     if @notification.update(notification_params)
-      redirect_to user_notifications_url(@user), notice: 'Notification was successfully updated.' 
+      redirect_to user_notifications_url(@user) 
     else
       render :edit 
     end
@@ -35,20 +35,20 @@ class NotificationsController < ApplicationController
 
   def destroy
     @notification.destroy
-    redirect_to user_notifications_url(@user), notice: 'Notification was successfully destroyed.' 
+    redirect_to user_notifications_url(@user) 
   end
 
   private
 
-    def initialize_user
-      @user = User.find(params[:user_id])
-    end
+  def initialize_user
+    @user = User.where(id: params[:id])
+  end
 
-    def initialize_notification
-      @notification = Notification.find(params[:id])
-    end
+  def initialize_notification
+    @notification = Notification.where(id: params[:id])
+  end
 
-    def notification_params
-      params.require(:notification).permit(:title, :description, :date, :time)
-    end
+  def notification_params
+    params.require(:notification).permit(:title, :description, :date, :time)
+  end
 end
