@@ -1,8 +1,9 @@
 class NotificationsController < ApplicationController
-  before_action :set_notification, only: [:show, :edit, :update, :destroy]
+  before_action :initialize_notification, only: [:show, :edit, :update, :destroy]
+  before_action :initialize_user
 
   def index
-    @notifications = Notification.all
+    @notifications =  @user.notifications
   end
 
   def show
@@ -16,30 +17,34 @@ class NotificationsController < ApplicationController
   end
 
   def create
-    @notification = Notification.new(notification_params)
+    @notification = @user.notifications.create(notification_params)
     if @notification.save
-      redirect_to @notification, notice: 'Notification was successfully created.' 
+      redirect_to user_notifications_url(@user), notice: 'Notification was successfully created.' 
     else
       render :new 
     end
   end
 
   def update
-      if @notification.update(notification_params)
-        redirect_to @notification, notice: 'Notification was successfully updated.' 
-      else
-        render :edit 
-      end
+    if @notification.update(notification_params)
+      redirect_to user_notifications_url(@user), notice: 'Notification was successfully updated.' 
+    else
+      render :edit 
+    end
   end
 
   def destroy
     @notification.destroy
-    redirect_to notifications_url, notice: 'Notification was successfully destroyed.' 
+    redirect_to user_notifications_url(@user), notice: 'Notification was successfully destroyed.' 
   end
 
   private
 
-    def set_notification
+    def initialize_user
+      @user = User.find(params[:user_id])
+    end
+
+    def initialize_notification
       @notification = Notification.find(params[:id])
     end
 

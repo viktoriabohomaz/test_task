@@ -1,4 +1,4 @@
-<%= form_with(model: notification, local: true) do |form| %>
+<%= form_with(model: notification, local: true, url: user_notifications_path) do |form| %>
   <% if notification.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(notification.errors.count, "error") %> prohibited this notification from being saved:</h2>
