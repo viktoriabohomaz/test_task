@@ -91,10 +91,17 @@ Rails.application.configure do
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
 
-  # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+
+  #These settings are for the sending out email for active admin and consequently the   devise mailer
+  config.action_mailer.default_url_options = { :host => 'evening-garden-57014.herokuapp.com' }
+  # ActionMailer Config
+  # Setup for production - deliveries, no errors raised
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default :charset => "utf-8"
   # SMTP settings for gmail
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',

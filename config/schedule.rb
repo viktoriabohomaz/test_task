@@ -1,7 +1,8 @@
 # frozen_string_literal: true
-set :environment, "production"
+job_type :rake, "cd :path && :environment_variable=:environment :bundle_command rake :task :output"
+set :environment, "development"
 set :output, {:error => "log/cron_error_log.log", :standard => "log/cron_log.log"}
 
 every 1.minute do
-  rake 'send_user_notification'
+  rake 'email_tasks:send_user_notification'
 end
