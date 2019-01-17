@@ -13,7 +13,6 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 # Style
 gem 'bootstrap', '~> 4.2.1'
-gem 'bootstrap-datepicker-rails'
 gem 'jquery-rails'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets

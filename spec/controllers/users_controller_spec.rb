@@ -58,4 +58,12 @@ RSpec.describe UsersController, type: :controller do
       expect(response).to redirect_to users_path
     end
   end
+
+  describe 'GET #new' do
+    it 'should return status success' do
+      get :new
+      expect(response).to have_http_status(:success)
+      expect(response).to render_template :new
+    end
+  end
 end
