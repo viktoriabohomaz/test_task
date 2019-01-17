@@ -1,0 +1,44 @@
+<div class='container my-lg-4'>
+  <div class='row'>
+    <div class='col-sm-12 text-center'>
+     <h1 class='text-dark'>Notifications for: <%= @user.email %></h1> 
+      <% if @notifications.present? %>
+        <table class='table'>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @notifications.each do |notification| %>
+              <tr>
+                <td><%= notification.title %></td>
+                <td><%= truncate(notification.description, length: 50) %></td>
+                <td><%= notification.date %></td>
+                <td><%= I18n.l(notification.time, format: :short_format) %></td>
+                <td><%= link_to 'Show', user_notification_url(@user.id, notification), class: 'btn btn-outline-info' %></td>
+                <% if notification.sended? %>
+                  <td><em>Sended</em></td>
+                <% else %>
+                  <td><%= link_to 'Edit', edit_user_notification_path(@user.id, notification), class: 'btn btn-outline-success' %></td>
+                <% end %>
+                <td><%= link_to 'Destroy', user_notification_path(@user.id, notification), class: 'btn btn-outline-dark', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <p><em> Please, add first notification </em></p>
+      <% end %>
+      <%= link_to 'Back to users', root_path, class: 'btn btn-secondary btn-lg'%>
+      <%= link_to 'Add Notification', new_user_notification_path, class: 'btn btn-lg btn-primary'%>
+    </div>
+  </div>
+</div>      
+<br>
+

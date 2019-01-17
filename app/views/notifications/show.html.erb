@@ -1,0 +1,27 @@
+<div class='container my-lg-4'>
+  <div class="row pb-3">  
+    <div class="col-md-auto col-xs-text-center"> 
+      <p class='text-left'>
+        <strong>Title:</strong>
+        <%= @notification.title %>
+      </p>
+
+      <p class='text-left'>
+        <strong>Description:</strong>
+        <%= @notification.description %>
+      </p>
+
+      <p class='text-left'>
+        <strong>Date to send:</strong>
+        <%= @notification.date %>
+      </p>
+
+      <p class='text-left'>
+        <strong>Time to send:</strong>
+        <%= I18n.l(@notification.time, format: :short_format)  %>
+      </p>
+
+      <%= link_to 'Back', user_notifications_path %>
+    </div>
+  </div>
+</div>
