@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
-  before_action :initialize_user, only: [:show, :edit, :update, :destroy]
+  before_action :initialize_user, only: [:destroy]
 
   def index
     @users = User.all
@@ -14,7 +16,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to users_path
     else
-      render :new 
+      render :new
     end
   end
 

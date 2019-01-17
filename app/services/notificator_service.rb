@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class NotificatorService
   def call
     @notifications = NotificationQuery.execute
-    deliver_email(@notifications) if @notifications.present?   
+    deliver_email(@notifications) if @notifications.present?
   end
 
   private
@@ -11,6 +13,6 @@ class NotificatorService
       user = notification.user
       NotificationMailer.notification_email(user, notification).deliver_now
       notification.update(sended: true)
-    end  
-  end  
+    end
+  end
 end

@@ -1,41 +1,41 @@
+# frozen_string_literal: true
+
 class NotificationsController < ApplicationController
-  before_action :initialize_notification, only: [:show, :edit, :update, :destroy]
+  before_action :initialize_notification, only: %i[show edit update destroy]
   before_action :initialize_user
 
   def index
     @notifications = @user.notifications.order(sended: :asc)
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @notification = Notification.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @notification = @user.notifications.create(notification_params)
     if @notification.save
       redirect_to user_notifications_url(@user)
     else
-      render :new 
+      render :new
     end
   end
 
   def update
     if @notification.update(notification_params)
-      redirect_to user_notifications_url(@user) 
+      redirect_to user_notifications_url(@user)
     else
-      render :edit 
+      render :edit
     end
   end
 
   def destroy
     @notification.destroy
-    redirect_to user_notifications_url(@user) 
+    redirect_to user_notifications_url(@user)
   end
 
   private
