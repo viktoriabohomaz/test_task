@@ -30,6 +30,7 @@ gem 'figaro'
 gem 'pry'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'faker'
 gem 'rubocop', require: false
 gem 'whenever', require: false
 
@@ -52,6 +53,7 @@ end
 group :test do
   gem 'database_cleaner'
   gem 'factory_bot_rails', '~> 4.0'
+  gem 'rails-controller-testing'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'simplecov', require: false
 end
