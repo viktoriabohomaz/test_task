@@ -7,7 +7,7 @@ class NotificatorService
   private
 
   def deliver_email(notifications)
-    notifications.each do |notification|
+    notifications.find_each(batch_size: 100) do |notification|
       user = notification.user
       NotificationMailer.notification_email(user, notification).deliver_now
       notification.update(sended: true)

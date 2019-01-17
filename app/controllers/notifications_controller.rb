@@ -3,7 +3,7 @@ class NotificationsController < ApplicationController
   before_action :initialize_user
 
   def index
-    @notifications = @user.notifications
+    @notifications = @user.notifications.order(sended: :asc)
   end
 
   def show
