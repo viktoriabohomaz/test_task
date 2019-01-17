@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :initialize_user, only: [:destroy]
+  before_action :initialize_user, only: :destroy
 
   def index
     @users = User.all
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   private
 
   def initialize_user
-    @user = User.find_by(id: params[:id])
+    @user = User.find(params[:id])
   end
 
   def user_params

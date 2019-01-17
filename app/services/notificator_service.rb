@@ -2,8 +2,8 @@
 
 class NotificatorService
   def call
-    @notifications = NotificationQuery.execute
-    deliver_email(@notifications) if @notifications.present?
+    notifications = NotificationQuery.execute
+    deliver_email(notifications) if notifications.present?
   end
 
   private

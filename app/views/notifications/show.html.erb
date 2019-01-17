@@ -17,7 +17,7 @@
 
 <p>
   <strong>Time:</strong>
-  <%= @notification.time.strftime("%k:%M")  %>
+  <%= I18n.l(@notification.time, format: :short_format)  %>
 </p>
 
 <p>

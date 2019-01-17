@@ -41,11 +41,11 @@ class NotificationsController < ApplicationController
   private
 
   def initialize_user
-    @user = User.find_by(id: params[:user_id])
+    @user = User.find(params[:user_id])
   end
 
   def initialize_notification
-    @notification = Notification.find_by(id: params[:id])
+    @notification = Notification.find(params[:id])
   end
 
   def notification_params
