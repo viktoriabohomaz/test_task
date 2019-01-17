@@ -14,7 +14,9 @@ class NotificationsController < ApplicationController
     @notification = Notification.new
   end
 
-  def edit; end
+  def edit
+    redirect_to user_notifications_url(@user) if @notification.sended?
+  end
 
   def create
     @notification = @user.notifications.create(notification_params)

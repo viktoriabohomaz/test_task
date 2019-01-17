@@ -1,8 +1,6 @@
 <%= form_with(model: notification, local: true, url: user_notifications_path) do |form| %>
   <% if notification.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(notification.errors.count, "error") %> prohibited this notification from being saved:</h2>
-
       <ul>
       <% notification.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -33,6 +31,7 @@
 
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Create Notification', class: 'btn btn-success my-2' %>
   </div>
+  <%= link_to 'Back', user_notifications_path %>
 <% end %>
